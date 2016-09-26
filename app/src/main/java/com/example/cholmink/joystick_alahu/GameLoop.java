@@ -29,13 +29,13 @@ public class GameLoop extends Thread {
         while (running) {
             startTime = System.currentTimeMillis();
             try {
-                canvas = view.getHolder().lockCanvas();
+                //canvas = view.getHolder().lockCanvas();
                 synchronized (view.getHolder()) {
-                    view.draw(canvas);
+                  //  view.draw(canvas);
                 }
             } finally {
                 if (canvas != null) {
-                    view.getHolder().unlockCanvasAndPost(canvas);
+                 //   view.getHolder().unlockCanvasAndPost(canvas);
                 }
             }
             sleepTime = ticksPS - (System.currentTimeMillis() - startTime);

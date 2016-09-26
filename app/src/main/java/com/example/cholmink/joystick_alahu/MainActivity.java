@@ -1,10 +1,15 @@
 package com.example.cholmink.joystick_alahu;
 
 import android.graphics.Color;
+import android.hardware.Camera;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.FrameLayout;
 
 public class MainActivity extends AppCompatActivity implements JoyStick.JoyStickListener {
+    private Camera mCamera = null;
+    private CameraView mCameraView = null;
 
     GameView gameView;
 
@@ -12,7 +17,16 @@ public class MainActivity extends AppCompatActivity implements JoyStick.JoyStick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        gameView = (GameView) findViewById(R.id.game);
+        try{
+            mCamera = Camera.open();//you can use open(int) to use different cameras
+        } catch (Exception e){
+            Log.d("ERROR", "Failed to get camera: " + e.getMessage());
+        }
+        mCameraView = new CameraView(this, mCamera);
+        FrameLayout camera_view = (FrameLayout)findViewById(R.id.camera_view);
+        camera_view.addView(mCameraView);
+
+
         JoyStick joy1 = (JoyStick) findViewById(R.id.joy1);
         joy1.setListener(this);
         joy1.setPadColor(Color.parseColor("#55ffffff"));
@@ -29,10 +43,10 @@ public class MainActivity extends AppCompatActivity implements JoyStick.JoyStick
     public void onMove(JoyStick joyStick, double angle, double power) {
         switch (joyStick.getId()) {
             case R.id.joy1:
-                gameView.move(angle, power);
+                mCameraView.move(angle, power);
                 break;
             case R.id.joy2:
-                gameView.rotate(angle);
+                mCameraView.rotate(angle);
                 break;
         }
     }

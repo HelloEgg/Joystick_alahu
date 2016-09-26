@@ -12,7 +12,6 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import java.util.Random;
-import java.util.Vector;
 
 /**
  * Created by cholmink on 16. 9. 20..
@@ -85,8 +84,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         if (posY > height - radius) posY = height - radius;
         if (posY < radius) posY = radius;
 
-        if (angle2 == 0) rotate = 0;
-        else rotate = (float) Math.toDegrees(angle2) - 90;
+
         canvas.rotate(rotate, posX, posY);
         rectF.set(posX - radius, posY - radius, posX + radius, posY + radius);
         canvas.drawBitmap(droid, null, rectF, paint);

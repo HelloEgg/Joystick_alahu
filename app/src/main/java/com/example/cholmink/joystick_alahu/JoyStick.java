@@ -8,7 +8,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.os.SystemClock;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -17,6 +19,7 @@ import android.view.View;
  */
 
 public class JoyStick extends View {
+
 
     JoyStickListener listener;
     Paint paint;
@@ -171,6 +174,7 @@ public class JoyStick extends View {
         if (listener != null) {
             listener.onMove(this, angle, power);
         }
+
         return true;
     }
 
@@ -187,8 +191,7 @@ public class JoyStick extends View {
     }
 
     public double getPower() {
-        return power;
-    }
+        return power;}
 
     public double getAngle() {
         return angle;
