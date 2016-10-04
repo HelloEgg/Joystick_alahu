@@ -5,11 +5,14 @@ import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.hardware.Camera;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.MediaController;
+import android.widget.VideoView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -71,15 +74,14 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
         super(context);
         networkService = ApplicationController.getInstance().getNetworkService();
         app = (ApplicationController) getContext().getApplicationContext();
-
-        mCamera = camera;
-        mCamera.setDisplayOrientation(180);
-        mHolder = getHolder();
-        mHolder.addCallback(this);
-        mHolder.setType(SurfaceHolder.SURFACE_TYPE_NORMAL);
+//
+//        mCamera = camera;
+//        mCamera.setDisplayOrientation(180);
+//        mHolder = getHolder();
+//        mHolder.addCallback(this);
+//        mHolder.setType(SurfaceHolder.SURFACE_TYPE_NORMAL);
 
     }
-
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
         try {
