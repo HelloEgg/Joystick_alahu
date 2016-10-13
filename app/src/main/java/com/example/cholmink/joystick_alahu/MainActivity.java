@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements JoyStick.JoyStick
                 mCameraView.move(angle, power);
                 break;
             case R.id.joy2:
-                mCameraView.rotate(angle);
+                mCameraView.rotate(angle, power);
                 break;
         }
     }

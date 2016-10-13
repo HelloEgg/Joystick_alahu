@@ -47,15 +47,87 @@ public class SocketComm extends Activity{
 //
 //        }
 //    };
-    public void sendMsg(){
-        try{
-            msg = "a";
-            Log.i("Test", "dos value:" + dos);
-            dos.writeBytes(msg);
-            dos.flush();
-        }catch(Exception e){
-            Log.i("Test", "Error messg" + e);
-        }
+public void goleftgoright(){
+    try{
+        msg = "a";
+        Log.i("Test", "dos value:" + dos);
+        dos.writeBytes(msg);
+        dos.flush();
+    }catch(Exception e){
+        Log.i("Test", "Error messg" + e);
+    }
+}
+    public void goleftstopright(){try{
+        msg = "a";
+        Log.i("Test", "dos value:" + dos);
+        dos.writeBytes(msg);
+        dos.flush();
+    }catch(Exception e){
+        Log.i("Test", "Error messg" + e);
+    }
+    }
+    public void stopleftgoright(){try{
+        msg = "a";
+        Log.i("Test", "dos value:" + dos);
+        dos.writeBytes(msg);
+        dos.flush();
+    }catch(Exception e){
+        Log.i("Test", "Error messg" + e);
+    }
+    }
+    public void stopleftstopright(){try{
+        msg = "a";
+        Log.i("Test", "dos value:" + dos);
+        dos.writeBytes(msg);
+        dos.flush();
+    }catch(Exception e){
+        Log.i("Test", "Error messg" + e);
+    }
+    }
+    public void backleftstopright(){try{
+        msg = "a";
+        Log.i("Test", "dos value:" + dos);
+        dos.writeBytes(msg);
+        dos.flush();
+    }catch(Exception e){
+        Log.i("Test", "Error messg" + e);
+    }
+    }
+    public void stopleftbackright(){try{
+        msg = "a";
+        Log.i("Test", "dos value:" + dos);
+        dos.writeBytes(msg);
+        dos.flush();
+    }catch(Exception e){
+        Log.i("Test", "Error messg" + e);
+    }
+    }
+    public void backleftbackright(){try{
+        msg = "a";
+        Log.i("Test", "dos value:" + dos);
+        dos.writeBytes(msg);
+        dos.flush();
+    }catch(Exception e){
+        Log.i("Test", "Error messg" + e);
+    }
+    }
+    public void backleftgoright(){try{
+        msg = "a";
+        Log.i("Test", "dos value:" + dos);
+        dos.writeBytes(msg);
+        dos.flush();
+    }catch(Exception e){
+        Log.i("Test", "Error messg" + e);
+    }
+    }
+    public void goleftbackright(){try{
+        msg = "a";
+        Log.i("Test", "dos value:" + dos);
+        dos.writeBytes(msg);
+        dos.flush();
+    }catch(Exception e){
+        Log.i("Test", "Error messg" + e);
+    }
     }
 
     void close(){

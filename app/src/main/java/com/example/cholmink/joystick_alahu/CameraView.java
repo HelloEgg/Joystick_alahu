@@ -63,6 +63,7 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
     double power;
 
     double angle2;
+    double power2;
 
     GameLoop gameLoop;
 
@@ -163,6 +164,7 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
         this.angle = angle;
         this.power = power;
 
+        Log.i("test", "value of power1 : " + power);
         if(System.currentTimeMillis() > untilTime){
             if (angle >= 0.1) {
                 turningon();
@@ -185,11 +187,12 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
 
     }
 
-    public void rotate(double angle2) {
-        initialize();
+    public void rotate(double angle2, double power2) {
         this.angle2 = angle2;
-
-
+        this.power2 = power2;
+        Log.i("test", "value of angle:" + angle2);
+        
+        Log.i("test", "value of power2" + power2);
     }
 
     public void initialize() {
@@ -215,7 +218,6 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
 //
 //            }
 //        });
-        socketComm.sendMsg();
 
     }
 
