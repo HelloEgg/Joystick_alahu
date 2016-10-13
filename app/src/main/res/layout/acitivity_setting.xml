@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Control IP Address"
+        android:id="@+id/control" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/controltextView"
+        android:layout_toRightOf="@+id/control"
+        android:layout_alignBaseline="@+id/control"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Screen IP"
+        android:id="@+id/screen"
+        android:layout_below="@+id/control"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="screenTextView"
+        android:id="@+id/screenTextView"
+        android:layout_toRightOf="@+id/screen"
+        android:layout_alignBaseline="@+id/screen"
+
+        />
+</RelativeLayout>

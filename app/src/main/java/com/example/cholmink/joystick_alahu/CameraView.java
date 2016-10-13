@@ -5,11 +5,14 @@ import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.hardware.Camera;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.MediaController;
+import android.widget.VideoView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -18,6 +21,8 @@ import java.io.BufferedInputStream;
 
 import retrofit.Call;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -64,22 +69,24 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
     long movedTime= 0;
     long untilTime = 0;
 
-    private NetworkService networkService;
-    ApplicationController app;
+
+    //This is a setting for Socket
+    private SocketComm socketComm = new SocketComm();
+//    private NetworkService networkService;
+//    ApplicationController app;
 
     public CameraView(Context context, Camera camera) {
         super(context);
-        networkService = ApplicationController.getInstance().getNetworkService();
-        app = (ApplicationController) getContext().getApplicationContext();
-
-        mCamera = camera;
-        mCamera.setDisplayOrientation(180);
-        mHolder = getHolder();
-        mHolder.addCallback(this);
-        mHolder.setType(SurfaceHolder.SURFACE_TYPE_NORMAL);
-
+//        networkService = ApplicationController.getInstance().getNetworkService();
+  //      app = (ApplicationController) getContext().getApplicationContext();
+//
+//        mCamera = camera;
+//        mCamera.setDisplayOrientation(180);
+//        mHolder = getHolder();
+//        mHolder.addCallback(this);
+//        mHolder.setType(SurfaceHolder.SURFACE_TYPE_NORMAL);
+        socketComm.connectThread();
     }
-
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
         try {
@@ -151,7 +158,7 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
 
 
     public void move(final double angle, double power) {
-        Log.d("test", "movedTime:"+movedTime);
+        Log.d("test", "movedTime:" + movedTime);
         Log.d("test", "untilTime:"+untilTime);
         this.angle = angle;
         this.power = power;
@@ -159,7 +166,7 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
         if(System.currentTimeMillis() > untilTime){
             if (angle >= 0.1) {
                 turningon();
-                untilTime = System.currentTimeMillis() +500;
+                untilTime = System.currentTimeMillis() +200;
             }
 
             if (angle <= -0.1) {
@@ -191,40 +198,44 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     private void turningon() {
-        Call<dummy> turnon = networkService.turnonLight();
-        turnon.enqueue(new Callback<dummy>() {
-            double realangle = angle;
+        //소켓 방식을 사용하기 위해 레트로핏은 접어둔다
+//        Call<dummy> turnon = networkService.turnonLight();
+//        turnon.enqueue(new Callback<dummy>() {
+//            double realangle = angle;
+//
+//            @Override
+//            public void onResponse(Response<dummy> response, Retrofit retrofit) {
+//                if (response.isSuccess()) {
+//                    Log.i("MyTag", "angle value" + realangle);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Throwable t) {
+//
+//            }
+//        });
+        socketComm.sendMsg();
 
-            @Override
-            public void onResponse(Response<dummy> response, Retrofit retrofit) {
-                if (response.isSuccess()) {
-                    Log.i("MyTag", "angle value" + realangle);
-                }
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-
-            }
-        });
     }
 
+
     private void turningoff() {
-        Call<dummy> turnoff = networkService.turnoffLight();
-        turnoff.enqueue(new Callback<dummy>() {
-            double realangle = angle;
-
-            @Override
-            public void onResponse(Response<dummy> response, Retrofit retrofit) {
-                if (response.isSuccess()) {
-                    Log.i("MyTag", "angle value" + realangle);
-                }
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-
-            }
-        });
+//        Call<dummy> turnoff = networkService.turnoffLight();
+//        turnoff.enqueue(new Callback<dummy>() {
+//            double realangle = angle;
+//
+//            @Override
+//            public void onResponse(Response<dummy> response, Retrofit retrofit) {
+//                if (response.isSuccess()) {
+//                    Log.i("MyTag", "angle value" + realangle);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Throwable t) {
+//
+//            }
+//        });
     }
 }
